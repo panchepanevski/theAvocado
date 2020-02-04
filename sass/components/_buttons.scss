@@ -1,0 +1,16 @@
+.btn-outline {
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 14px;
+  font-weight: 500;
+  color: $color-text;
+  padding: 12px;
+  border-radius: 20px;
+  background-color: $color-primary;
+  border-radius: 15px;
+  box-shadow: 8px 10px 20px -1px rgba(177, 177, 177, 0.3);
+  &:hover {
+    color: $color-secondary;
+  }
+}

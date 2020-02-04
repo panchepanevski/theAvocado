@@ -1,0 +1,33 @@
+$min_width: 320px;
+$max_width: 1200px;
+$min_font: 14px;
+$max_font: 24px;
+
+html {
+  @include fluid-type($min_width, $max_width, $min_font, $max_font);
+}
+
+$mod_1: 1.2; // mobile
+$mod_2: 1.5; // desktop
+
+h1 {
+  text-shadow: 1px 1px 3px rgba(150, 150, 150, 0.5);
+  font-size: $mod_1 * $mod_1 * $mod_1 * $mod_1 * 1rem;
+  @include fluid-type(
+    $min_width,
+    $max_width,
+    $mod_1 * $mod_1 * $mod_1 * $min_font,
+    $mod_2 * $mod_2 * $mod_2 * $min_font
+  );
+}
+
+p {
+  color: $color-text-hover;
+  font-size: $mod_1 * 1rem;
+  @include fluid-type(
+    $min_width,
+    $max_width,
+    $mod_1 * $min_font,
+    $mod_2 * $min_font
+  );
+}
