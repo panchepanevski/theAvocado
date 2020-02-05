@@ -6,6 +6,14 @@
     opacity: 1;
     transform: translate3d(0, 0, 0); } }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0); }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0); } }
+
 @keyframes rotateIn {
   from {
     transform-origin: center;
@@ -15,6 +23,14 @@
     transform-origin: center;
     transform: translate3d(0, 0, 0);
     opacity: 1; } }
+
+@keyframes navLinkFade {
+  from {
+    opacity: 0;
+    transform: translateX(50px); }
+  to {
+    opacity: 1;
+    transform: translateX(0px); } }
 
 *,
 *::before,
@@ -91,6 +107,49 @@ nav {
   .nav__links li {
     list-style: none; }
 
+.burger {
+  display: none;
+  cursor: pointer; }
+
+.burger div {
+  width: 30px;
+  height: 3px;
+  background-color: black;
+  margin: 5px;
+  transition: all 0.3s ease; }
+
+@media screen and (max-width: 1024px) {
+  body {
+    overflow-x: hidden; }
+  .nav__links {
+    position: absolute;
+    right: 0px;
+    height: 52vh;
+    top: 8vh;
+    background-color: #f8f7ec;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    transform: translate(100%);
+    transition: transform 0.5s ease-in; }
+  .nav__links li {
+    opacity: 0; }
+  .burger {
+    display: block; } }
+
+.nav-active {
+  transform: translate(0%); }
+
+.toggle .line1 {
+  transform: rotate(-45deg) translate(-5px, 6px); }
+
+.toggle .line2 {
+  opacity: 0; }
+
+.toggle .line3 {
+  transform: rotate(45deg) translate(-5px, -6px); }
+
 body {
   margin: 0;
   padding: 0;
@@ -103,7 +162,7 @@ body {
   height: 90vh;
   display: grid;
   grid-template-columns: 5% 40% 5% 45% 5%;
-  grid-template-rows: auto;
+  grid-template-rows: auto auto;
   box-shadow: 0px 5px 24px 0px #f8f7ec; }
 
 .article-healty {
@@ -111,17 +170,29 @@ body {
   grid-row: 1 / 2;
   align-self: center;
   animation-duration: 1.2s;
-  animation-name: fadeInDown; }
+  animation-name: fadeInUp; }
 
 .image-wrapper-healty {
   grid-column: 4 / 5;
   grid-row: 1 / 2;
   align-self: center;
   animation-duration: 1s;
-  animation-name: rotateIn; }
+  animation-name: fadeInUp; }
 
 span {
   color: #78c35d; }
+
+@media screen and (max-width: 1024px) {
+  .image-wrapper-healty {
+    grid-column: 2 / 5;
+    grid-row: 2 / 3;
+    align-self: center;
+    animation-duration: 1s;
+    animation-name: fadeInUp; }
+  .article-healty {
+    grid-column: 2 / 5;
+    grid-row: 1 / 2;
+    align-self: center; } }
 
 .btn-outline {
   text-decoration: none;
@@ -143,7 +214,7 @@ span {
   height: 52vh;
   display: grid;
   grid-template-columns: 5% 45% 5% 40% 5%;
-  grid-template-rows: auto auto; }
+  grid-template-rows: auto auto auto auto; }
   .health-benefits__article {
     grid-column: 4 / 5;
     grid-row: 1 / 2;
@@ -161,10 +232,10 @@ span {
   padding-bottom: 50px; }
   .benefits-list__one {
     grid-column: 2 / 3;
-    grid-row: 2 / 3; }
+    grid-row: 1 / 2; }
   .benefits-list__two {
     grid-column: 4 / 5;
-    grid-row: 2 / 3; }
+    grid-row: 1 / 2; }
 
 .wrap-collabsible {
   margin: 1.2rem 0; }
@@ -219,12 +290,41 @@ input[type="checkbox"] {
   border-bottom-right-radius: 7px;
   padding: 0.5rem 1rem; }
 
+@media screen and (max-width: 1024px) {
+  .health-benefits {
+    width: 100%;
+    height: 80vh;
+    display: grid;
+    grid-template-columns: 5% 45% 5% 40% 5%;
+    grid-template-rows: auto auto auto auto; }
+  .health-benefits__article {
+    grid-column: 2 / 5;
+    grid-row: 1 / 2; }
+  .health-benefits__image-wrapper {
+    grid-column: 2 / 5;
+    grid-row: 2 / 3;
+    align-self: center; }
+  .benefits-list {
+    display: grid;
+    grid-template-columns: 5% 45% 5% 40% 5%;
+    grid-template-rows: auto auto; }
+  .benefits-list__one {
+    grid-column: 2 / 5;
+    grid-row: 1 / 2;
+    font-size: 10px; }
+  .benefits-list__two {
+    grid-column: 2 / 5;
+    grid-row: 2 / 3;
+    font-size: 10px; }
+  .lbl-toggle {
+    font-size: 16px; } }
+
 .recipes {
   width: 100%;
   height: 100vh;
   display: grid;
   grid-template-columns: 5% 30% 30% 30% 5%;
-  grid-template-rows: auto auto auto;
+  grid-template-rows: auto auto auto auto;
   grid-gap: 10px 10px;
   box-shadow: 0px 5px 24px 0px #f8f7ec; }
   .recipes__h1 {
@@ -239,7 +339,7 @@ input[type="checkbox"] {
   align-self: center;
   justify-self: center;
   max-width: 400px;
-  height: 610px;
+  height: 100%;
   box-shadow: 5px 7px 17px -1px rgba(177, 177, 177, 0.1); }
   .card__image > img {
     max-width: 100%;
@@ -258,7 +358,7 @@ input[type="checkbox"] {
   align-self: center;
   justify-self: center;
   max-width: 400px;
-  height: 610px;
+  height: 100%;
   box-shadow: 5px 7px 17px -1px rgba(177, 177, 177, 0.1); }
 
 .card-2 {
@@ -267,24 +367,64 @@ input[type="checkbox"] {
   align-self: center;
   justify-self: center;
   max-width: 400px;
-  height: 610px;
+  height: 100%;
   box-shadow: 5px 7px 17px -1px rgba(177, 177, 177, 0.1); }
+
+@media screen and (max-width: 1024px) {
+  .recipes {
+    width: 100%;
+    height: 1800px;
+    display: grid;
+    grid-template-columns: 5% 30% 30% 30% 5%;
+    grid-template-rows: auto auto auto auto;
+    grid-gap: 0px 0px; }
+  .recipes__h1 {
+    grid-column: 2 / 5;
+    grid-row: 1 / 2; }
+  .card {
+    grid-column: 2 / 5;
+    grid-row: 2 / 3;
+    height: 100%;
+    margin-bottom: 40px; }
+  .card-1 {
+    grid-column: 2 / 5;
+    grid-row: 3 / 4;
+    height: 100%;
+    margin-bottom: 40px; }
+  .card-2 {
+    grid-column: 2 / 5;
+    grid-row: 4 / 5;
+    height: 100%;
+    margin-bottom: 40px; } }
 
 .history {
   width: 100%;
   height: 90vh;
   display: grid;
   grid-template-columns: 5% 45% 5% 40% 5%;
-  grid-template-rows: auto;
+  grid-template-rows: auto auto;
   box-shadow: 0px 5px 24px 0px #f8f7ec; }
-  .history .history__image-wrapper {
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
-    align-self: center; }
-  .history .history__article {
-    grid-column: 4 / 5;
-    grid-row: 1 / 2;
-    align-self: center; }
+
+.history__image-wrapper {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  align-self: center; }
+
+.history__article {
+  grid-column: 4 / 5;
+  grid-row: 1 / 2;
+  align-self: center; }
+
+@media screen and (max-width: 1024px) {
+  .history {
+    width: 100%;
+    height: 90vh; }
+  .history__article {
+    grid-column: 2 / 5;
+    grid-row: 1 / 2; }
+  .history__image-wrapper {
+    grid-column: 2 / 5;
+    grid-row: 2 / 3; } }
 
 footer {
   width: 100%;
